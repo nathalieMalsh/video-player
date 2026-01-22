@@ -2,16 +2,49 @@ import { createMachine } from 'xstate'
 
 export const playerMachine = createMachine({
   id: 'player',
-  initial: 'closed', // closed/open
+  initial: 'closed', // closed/opened
   states: {
     closed: {
       on: {
-        click: 'open'
+        open: 'opened'
       }
     },
-    open: {
+    opened: {
+      type: 'parallel',
       on: {
-        close: 'closed',
+        close: 'closed'
+      },
+      states: {
+        video: {
+          initial: 'playing',
+          states: {
+            paused: {
+              on: {
+                play: 'playing'
+              }
+            },
+            playing: {
+              on: {
+                pause: 'paused'
+              }
+            }
+          }
+        },
+        size: {
+          initial: 'full',
+          states: {
+            full: {
+              on: {
+                toggle: 'mini'
+              }
+            },
+            mini: {
+              on: {
+                toggle: 'full'
+              }
+            }
+          }
+        }
       }
     }
   }
