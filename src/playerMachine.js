@@ -11,6 +11,7 @@ export const playerMachine = createMachine({
     },
     opened: {
       type: 'parallel',
+      exit: 'stopVideo',
       on: {
         close: 'closed'
       },
