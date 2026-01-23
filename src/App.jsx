@@ -5,6 +5,7 @@ import { PlayCircleOutlined, ShrinkOutlined, ArrowsAltOutlined, PauseOutlined, C
 import { useMachine } from '@xstate/react'
 import { playerMachine } from './playerMachine'
 import ReactPlayer from 'react-player'
+import { modalStyles } from './modalStyles'
 
 const App = () => {
   const playerRef = useRef(null)
@@ -28,6 +29,7 @@ const App = () => {
       <div className={classes.closedModal}>
         <PlayCircleOutlined className={classes.icon} onClick={() => send({ type: 'open' })} />
         <Modal
+          styles={modalStyles}
           open={isPlayerOpened}
           title='PLAYER'
           width={isModalFull ? 1000 : 500}
