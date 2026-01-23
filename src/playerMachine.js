@@ -2,7 +2,7 @@ import { createMachine } from 'xstate'
 
 export const playerMachine = createMachine({
   id: 'player',
-  initial: 'closed', // closed/opened
+  initial: 'closed',
   states: {
     closed: {
       on: {

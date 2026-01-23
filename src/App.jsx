@@ -13,8 +13,7 @@ const App = () => {
     playerMachine.provide({
       actions: {
         stopVideo: () => {
-          const player = playerRef.current
-          player.pause()
+          playerRef.current?.pause?.()
         }
       }
     })
@@ -37,7 +36,7 @@ const App = () => {
           footer={[
             <Button shape='circle' key='size'
               icon={isModalFull ? <ShrinkOutlined /> : <ArrowsAltOutlined />}
-              onClick={() => send({ type: 'toggle' })} 
+              onClick={() => send({ type: 'toggle' })}
             />,
             <Button shape='circle' key='pause'
               icon={isVideoPlaying ? <PauseOutlined /> : <CaretRightOutlined />}
